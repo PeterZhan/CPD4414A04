@@ -34,19 +34,25 @@ public class ProductFacadeREST extends AbstractFacade<Product> {
     }
 
     @POST
-    @Override
     @Consumes({"application/json"})
-    public void create(Product entity) {
+    @Produces({"application/json"})
+    public Product createWithReturn(Product entity) {
         super.create(entity);
+        
+        return entity;
+       
+        
     }
 
     @PUT
     @Path("{id}")
     @Consumes({"application/json"})
-    public void edit(@PathParam("id") Integer id, Product entity) {
+    @Produces({"application/json"})
+    public Product editWithReturn(@PathParam("id") Integer id, Product entity) {
        
+       entity.setProductID(id);
        super.edit(entity);
-      
+       return entity;
         
     }
 
@@ -62,14 +68,14 @@ public class ProductFacadeREST extends AbstractFacade<Product> {
     public Product find(@PathParam("id") Integer id) {
         return super.find(id);
     }
-
+ 
     @GET
     @Override
     @Produces({ "application/json"})
     public List<Product> findAll() {
         return super.findAll();
     }
-
+ /*
     @GET
     @Path("{from}/{to}")
     @Produces({"application/json"})
@@ -83,7 +89,7 @@ public class ProductFacadeREST extends AbstractFacade<Product> {
     public String countREST() {
         return String.valueOf(super.count());
     }
-
+    */
     @Override
     protected EntityManager getEntityManager() {
         return em;
