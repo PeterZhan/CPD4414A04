@@ -21,7 +21,7 @@ import javax.ws.rs.Produces;
 
 /**
  *
- * @author Administrator
+ * @author Hongliang Zhang
  */
 @Stateless
 @Path("products")

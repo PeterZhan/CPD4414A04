@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Administrator
+ * @author Hongliang Zhang
  */
 @Entity
 @Table(name = "product")
