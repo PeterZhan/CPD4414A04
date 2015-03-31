@@ -18,6 +18,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -49,7 +50,7 @@ public class ProductFacadeREST extends AbstractFacade<Product> {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Product editWithReturn(@PathParam("id") Integer id, Product entity) {
-       
+    //   if (super.find(id) == null)  Response.status(500).build();
        entity.setProductID(id);
        super.edit(entity);
        return entity;
@@ -59,6 +60,8 @@ public class ProductFacadeREST extends AbstractFacade<Product> {
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Integer id) {
+       // if (super.find(id) == null)  Response.status(500).build();
+        
         super.remove(super.find(id));
     }
 
