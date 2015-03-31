@@ -11,9 +11,9 @@
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="ProdcutionNew" object-type="user" pool-name="mysql_cpd4414assign3_usertestPool"/>
-    <admin-object-resource enabled="true" jndi-name="jms/ProductListener"  res-type="javax.jms.Queue"  res-adapter="jmsra">
+    <!--admin-object-resource enabled="true" jndi-name="jms/Queue"  res-type="javax.jms.Queue"  res-adapter="jmsra">
         <property name="Name" value="PhysicalQueue"/>
     </admin-object-resource>
     <connector-connection-pool name="jms/ProductListenerFactoryPool"  connection-definition-name="javax.jms.QueueConnectionFactory"  resource-adapter-name="jmsra"/>
-    <connector-resource enabled="true" jndi-name="jms/ProductListenerFactory" pool-name="jms/ProductListenerFactoryPool"  />
+    <connector-resource enabled="true" jndi-name="jms/ProductListenerFactory" pool-name="jms/ProductListenerFactoryPool"  /-->
 </resources>

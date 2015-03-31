@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -24,26 +25,39 @@ import javax.persistence.PersistenceContext;
  */
 @Singleton
 public class ProductList extends AbstractFacade<Product>{
-
-    @PersistenceContext(unitName = "WebForRestfulPU")
-    private EntityManager em;
+    
+   
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     private HashMap<Integer, Product> productList  = new HashMap();
     private List<Product> plist;
+   @PersistenceContext(unitName = "WebForRestfulPU")
+   private EntityManager em;
 
     public ProductList() {
-        super(Product.class);
-        plist = super.findAll();
+       
+         super(Product.class);
+        
+    //   intializeit(); 
+        
+        
+    }  
+    
+    
+    public void intializeit()
+    {
+        
+       plist = super.findAll();
         
         for (Product p : plist)
         {
             
           productList.put(p.getProductID(), p);
             
-        }
+        } 
         
-    }  
+        
+    }
 
     @Override
     protected EntityManager getEntityManager() {
@@ -120,6 +134,10 @@ public class ProductList extends AbstractFacade<Product>{
     
       
    }
+
+    public void persist(Object object) {
+        em.persist(object);
+    }
     
    
     

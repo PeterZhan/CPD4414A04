@@ -7,6 +7,7 @@ package cpd414.restful.pk.service;
 
 import cpd414.restful.pk.Product;
 import java.util.List;
+import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -69,7 +70,10 @@ public class ProductFacadeREST extends AbstractFacade<Product> {
     @Path("{id}")
     @Produces({"application/json"})
     public Product find(@PathParam("id") Integer id) {
-        return super.find(id);
+        Product p = super.find(id);
+       
+        
+        return p;
     }
  
     @GET

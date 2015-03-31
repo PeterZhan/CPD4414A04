@@ -19,7 +19,6 @@ import javax.jms.TextMessage;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.json.stream.JsonParser;
 
 /**
  *
@@ -29,45 +28,40 @@ import javax.json.stream.JsonParser;
     @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "jms/Queue"),
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
 })
+
 public class ProductListener implements MessageListener {
     @EJB
     private ProductList productList;
     
     public ProductListener() {
+       productList.intializeit();
+        
     }
     
     @Override
     public void onMessage(Message message) {
+        
         if (!(message instanceof TextMessage)) return;
-        
-        TextMessage textMessage = (TextMessage) message;
-        
-        try{
-            String m = textMessage.getText();
-           
-            JsonReader reader = Json.createReader(new StringReader(m));
-                        
-            JsonObject json = reader.readObject();
+        try {
+            String m = ((TextMessage)message).getText();
             
+            
+            JsonReader jsonReader = Json.createReader(new StringReader(m));
+            JsonObject json = jsonReader.readObject();
             Product p = new Product();
             p.setName(json.getString("Name"));
-            p.setDescription(json.getString("Description"));
             p.setQuantity(json.getInt("Quantity"));
+            p.setDescription("Description");
+            
             
             productList.add(p);
+            
+            
             
             
         } catch (Exception ex) {
             Logger.getLogger(ProductListener.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-        
     }
-    
-    
-
-
     
 }
