@@ -34,7 +34,7 @@ public class ProductListener implements MessageListener {
     private ProductList productList;
     
     public ProductListener() {
-       productList.intializeit();
+       
         
     }
     
